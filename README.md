@@ -1,4 +1,4 @@
-# LINK - sort
+# LINK - short
 
 Welcome to the LINK - short web application! This project provides a simple and convenient way to shorten URLs and manage short links.
 
