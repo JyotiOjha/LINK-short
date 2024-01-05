@@ -1,6 +1,6 @@
-# Link Shortener Web Application
+# LINK - sort
 
-Welcome to the Link Shortener web application! This project provides a simple and convenient way to shorten URLs and manage short links.
+Welcome to the LINK - short web application! This project provides a simple and convenient way to shorten URLs and manage short links.
 
 
 ## Features
