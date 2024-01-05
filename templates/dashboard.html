@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <style>
+        body {
+            background-color: #daedf4;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #001f3f;
+        }
+
+        h3 {
+            color: #1e5262;
+        }
+
+        h4 {
+            color: #102c35;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            flex: 0 0 48%;
+            background-color: #e6f7ff;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #528aae;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #0074cc;
+            text-decoration: none;
+            margin-top: 10px;
+            display: block;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #daedf4;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            color: #001f3f;
+        }
+
+        .footer-marquee {
+            margin: 0;
+        }
+
+        
+    </style>
+</head>
+<body>
+    
+    <div class="header-container">
+        <h3>Welcome, {{ user.username }}!</h3>
+        <button class="btn btn-danger logout-btn" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+    </div>
+    
+    <div class="container">
+        <h2 class="text-center">Create a New Short Link:</h2>
+        <form method="post" action="{{ url_for('generate_link') }}">
+            <label for="original_url"><b>ENTER URL:</b></label>
+            <input type="url" id="original_url" name="original_url" required>
+            <br>
+            <button type="submit">Generate Short Link</button>
+        </form>
+        <br>
+        
+        <script>
+            function copyToClipboard(shortLink) {
+                var input = document.createElement("input");
+                input.setAttribute("value", shortLink);
+                document.body.appendChild(input);
+                input.select();
+                input.setSelectionRange(0, 99999);
+                document.execCommand("copy");
+                document.body.removeChild(input);
+                alert("Short Link copied to clipboard: " + shortLink);
+            }
+        </script>
+
+        <h4 class="text-center">Your Short Links:</h4>
+        
+        <div class="card-container my-5">
+            {% for link in links %}
+                <div class="card">
+                    <strong>{{ link.original_url }}</strong>  
+                    <a href="{{ url_for('short_link_details', code=link.short_code) }}">Details</a>
+                    <button onclick="copyToClipboard('{{ url_for('short_link', code=link.short_code, _external=True) }}')">Copy Link</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <marquee behavior="scroll" direction="left" scrollamount="5" class="footer-marquee">
+            <b>Save your links in the easiest and convenient way to access anywhere and anytime!</b>
+        </marquee>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINK DETAILS</title>
+    <style>
+        body {
+            background-image: url('https://s17233.pcdn.co/blog/wp-content/uploads/2022/02/Shortlinks_blog_social-sharing_1200x630.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .analytics-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 80%;
+            margin: 20px;
+        }
+
+        h1, p {
+            color: #001f3f;
+        }
+
+        button {
+            background-color: #528aae;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dashboard-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #daedf4;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            color: #001f3f;
+        }
+
+        .footer-marquee {
+            margin: 0;
+        }
+
+       
+    </style>
+</head>
+<body>
+   
+    <div class="analytics-box">
+        <h1>DETAILS</h1>
+        <p><strong>Original URL:</strong> {{ short_link.original_url }}</p>
+        <p><strong>Short Code:</strong> {{ short_link.short_code }}</p>
+        <p><strong>Creation Date:</strong> {{ short_link.creation_date }}</p>
+        <p><strong>Expiration Date:</strong> {{ short_link.expiration_date }}</p>
+        <br>
+
+        <button onclick="copyToClipboard()">Copy Short Link</button>
+
+        <a class="dashboard-btn" href="{{ url_for('dashboard') }}">
+            <button>Back to Dashboard</button>
+        </a>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            var shortLink = "{{ url_for('short_link', code=short_link.short_code, _external=True) }}";
+            var input = document.createElement("input");
+            input.setAttribute("value", shortLink);
+            document.body.appendChild(input);
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.body.removeChild(input);
+            alert("Short Link copied to clipboard: " + shortLink);
+        }
+    </script>
+
+    <footer>
+        <marquee behavior="scroll" direction="left" scrollamount="5" class="footer-marquee">
+            <b>Save your links in the easiest and convenient way to access anywhere and anytime!</b>
+        </marquee>
+    </footer>
+</body>
+</html>

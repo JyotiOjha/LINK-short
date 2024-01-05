@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Register</title>
+
+    <style>
+        body {
+            background-image: url('https://s17233.pcdn.co/blog/wp-content/uploads/2022/02/Shortlinks_blog_social-sharing_1200x630.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .card-group {
+            margin: 20px 10px; 
+        }
+        marquee {
+            background-color: #dff2ff; 
+            padding: 10px; 
+            margin-bottom: 20px; 
+        }
+        h1{
+             font-family : "Georgia";
+             color : #1e3f66;
+             
+        }
+    </style>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+    <b>    Welcome to our Link Shortener application! Register now for exciting features!</b>
+    </marquee>
+    <div class="container">
+        <h1 class="text-center my-4">LINK - short</h1>
+
+       
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+       
+        <div class="d-flex justify-content-around my-5">
+           
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Login</h5>
+                    <form method="post" action="{{ url_for('login') }}">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" id="username" name="username" required class="form-control">
+                        <br>
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" required class="form-control">
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                </div>
+            </div>
+
+         
+            <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register</h5>
+                    <form method="post" action="{{ url_for('register') }}">
+                        <label for="new_username" class="form-label">New Username:</label>
+                        <input type="text" id="new_username" name="new_username" required class="form-control">
+                        <br>
+                        <label for="new_password" class="form-label">New Password:</label>
+                        <input type="password" id="new_password" name="new_password" required class="form-control">
+                        <br>
+                        <button type="submit" class="btn btn-success btn-block">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      <b>  Save your links in the easiest and convenient way to access anywhere and anytime !</b>
+    </marquee>
+</footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
+{% endblock %}
