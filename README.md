@@ -11,33 +11,6 @@ Welcome to the LINK - short web application! This project provides a simple and 
 - **Clipboard Copy**: One-click copy of short links to the clipboard.
 - **Responsive Design**: A user-friendly interface accessible on various devices.
 
-## Getting Started
-
-1. **Clone the Repository**:
-
-    ```bash
-    git clone https://github.com/your-username/link-shortener.git
-    cd link-shortener
-    ```
-
-2. **Install Dependencies**:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. **Set Up the Database**:
-
-    - Create a database and update the database URI in the `config.py` file.
-
-4. **Run the Application**:
-
-    ```bash
-    flask run
-    ```
-
-    The application will be accessible at `http://localhost:5000` by default.
-
 ## Usage
 
 1. **Register/Login**:
