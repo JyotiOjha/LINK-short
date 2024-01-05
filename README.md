@@ -73,12 +73,12 @@ Welcome to the Link Shortener web application! This project provides a simple an
 ![url1](https://github.com/JyotiOjha/LINK-short/assets/82596078/7c24210d-5b2e-406c-ac2e-56846828c3d2)
 
 
-3. **Dashboard**
+2. **Dashboard**
    
 ![url2](https://github.com/JyotiOjha/LINK-short/assets/82596078/a5f1471c-644c-4c4a-b089-a2c4b1590545)
 
 
-5. **Details**
+3. **Details**
    
 ![url3](https://github.com/JyotiOjha/LINK-short/assets/82596078/25ef6555-4c57-43dd-8e14-e3835c9dc7ff)
 
